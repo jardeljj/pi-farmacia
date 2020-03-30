@@ -6,8 +6,14 @@
 
 /**
  *
- * @author jarde
+ * @author jardel
  */
 public class produto {
+    
+    String nome;
+    String validade;
+    String unidade;
+    double preco;
+    
     
 }
