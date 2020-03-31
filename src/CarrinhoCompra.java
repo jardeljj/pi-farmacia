@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /*
@@ -14,5 +15,28 @@ import java.util.Date;
 public class CarrinhoCompra {
     
     public Date dataCriacao;
+    public ArrayList<Produto> produtos;
+    
+    public CarrinhoCompra() {
+        this.produtos = new ArrayList<>();
+    }
+
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public ArrayList<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void adicinarProduto(Produto produto) {
+        if (produto != null) {
+            this.produtos.add(produto);
+        }
+    }
     
 }
