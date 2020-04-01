@@ -2,7 +2,10 @@
 
 ## Tela inicial
 
-[Imgur](https://i.imgur.com/jSr2r3a.gifv)
+
+<p align="center">
+  <img alt="Tela inicial do projeto" src="https://i.imgur.com/jSr2r3a.gifg">
+</p>
 
 ## Diagrama de caso de uso
 
