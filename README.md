@@ -1,5 +1,9 @@
 # Projeto integrador - Farmácia
 
+## Tela inicial
+
+[Imgur](https://i.imgur.com/jSr2r3a.gifv)
+
 ## Diagrama de caso de uso
 
 
