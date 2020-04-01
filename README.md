@@ -4,7 +4,7 @@
 
 
 <p align="center">
-  <img alt="Tela inicial do projeto" src="https://i.imgur.com/jSr2r3a.gifg">
+  <img alt="Tela inicial do projeto" src="https://i.imgur.com/jSr2r3a.gif">
 </p>
 
 ## Diagrama de caso de uso
