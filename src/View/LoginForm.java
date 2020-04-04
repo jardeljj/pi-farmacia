@@ -1,4 +1,4 @@
-package Login;
+package View;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,12 +10,12 @@ package Login;
  *
  * @author Lucas Santiago
  */
-public class LoginPrototipo extends javax.swing.JFrame {
+public class LoginForm extends javax.swing.JFrame {
 
     /**
      * Creates new form LoginPrototipo
      */
-    public LoginPrototipo() {
+    public LoginForm() {
         initComponents();
     }
 
@@ -33,7 +33,7 @@ public class LoginPrototipo extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JLabel();
         txtSenha = new javax.swing.JLabel();
         campotxtUser = new javax.swing.JTextField();
-        botaoSalvar = new javax.swing.JToggleButton();
+        btnEntrar = new javax.swing.JToggleButton();
         botaoCancelar = new javax.swing.JToggleButton();
         campotxtSenha = new javax.swing.JPasswordField();
 
@@ -61,10 +61,10 @@ public class LoginPrototipo extends javax.swing.JFrame {
             }
         });
 
-        botaoSalvar.setText("Salvar");
-        botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
+        btnEntrar.setText("Entrar");
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoSalvarActionPerformed(evt);
+                btnEntrarActionPerformed(evt);
             }
         });
 
@@ -92,7 +92,7 @@ public class LoginPrototipo extends javax.swing.JFrame {
                                     .addComponent(campotxtSenha, javax.swing.GroupLayout.Alignment.TRAILING)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(57, 57, 57)
-                        .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(botaoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(62, Short.MAX_VALUE))
@@ -110,7 +110,7 @@ public class LoginPrototipo extends javax.swing.JFrame {
                     .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoSalvar)
+                    .addComponent(btnEntrar)
                     .addComponent(botaoCancelar))
                 .addGap(57, 57, 57))
         );
@@ -133,11 +133,15 @@ public class LoginPrototipo extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoSalvarActionPerformed
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        PrincipalForm principalForm = new PrincipalForm();
+        principalForm.setVisible(true);
+        setVisible(false);
+
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void campotxtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campotxtUserActionPerformed
         // TODO add your handling code here:
@@ -160,27 +164,28 @@ public class LoginPrototipo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginPrototipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginPrototipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginPrototipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginPrototipo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginPrototipo().setVisible(true);
+                new LoginForm().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton botaoCancelar;
-    private javax.swing.JToggleButton botaoSalvar;
+    private javax.swing.JToggleButton btnEntrar;
     private javax.swing.JPasswordField campotxtSenha;
     private javax.swing.JTextField campotxtUser;
     private javax.swing.JPanel jPanel1;

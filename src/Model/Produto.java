@@ -1,3 +1,5 @@
+package Model;
+
 
 import java.util.Date;
 
@@ -17,6 +19,9 @@ public class Produto {
     private String unidade;
     private double preco;
     private Date validade;
+    private String categoria;
+
+   
     
     public Produto(){
     
@@ -43,41 +48,35 @@ public class Produto {
         return unidade;
     }
 
-    /**
-     * @param unidade the unidade to set
-     */
     public void setUnidade(String unidade) {
         this.unidade = unidade;
     }
 
-    /**
-     * @return the preco
-     */
+   
     public double getPreco() {
         return preco;
     }
 
-    /**
-     * @param preco the preco to set
-     */
     public void setPreco(double preco) {
         this.preco = preco;
     }
 
-    /**
-     * @return the validade
-     */
+ 
     public Date getValidade() {
         return validade;
     }
 
-    /**
-     * @param validade the validade to set
-     */
+ 
     public void setValidade(Date validade) {
         this.validade = validade;
     }
     
     
-    
+     public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
 }
