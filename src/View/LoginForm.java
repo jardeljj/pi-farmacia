@@ -136,6 +136,7 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         PrincipalForm principalForm = new PrincipalForm();
+        principalForm.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         principalForm.setVisible(true);
         setVisible(false);
 
