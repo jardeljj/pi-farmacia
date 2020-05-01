@@ -1,5 +1,7 @@
+package Model;
 
-import Produto.Produto;
+
+import Model.Produto;
 import java.util.ArrayList;
 import java.util.Date;
 
