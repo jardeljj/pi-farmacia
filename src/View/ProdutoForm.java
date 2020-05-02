@@ -9,7 +9,7 @@ package View;
  *
  * @author Bruno
  */
-public class ProdutoForm extends javax.swing.JFrame {
+public class ProdutoForm extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form produtoPrototipo
