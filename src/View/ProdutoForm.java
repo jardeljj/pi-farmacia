@@ -41,7 +41,10 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
         lblCategoria = new javax.swing.JLabel();
         lblPreco = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximizable(true);
+        setResizable(true);
 
         btnCancelar.setText("Cancelar");
 
