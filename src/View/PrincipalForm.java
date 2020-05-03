@@ -4,7 +4,7 @@ package View;
 import View.CarrinhoVendaForm;
 import View.ProdutoForm;
 import View.RelatorioVendasForm;
-
+import View.PainelCliente;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -38,6 +38,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         btnProduto = new javax.swing.JButton();
         btnVenda = new javax.swing.JButton();
         btnRelatorio = new javax.swing.JButton();
+        btnCliente = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCliente = new javax.swing.JMenu();
 
@@ -76,6 +77,13 @@ public class PrincipalForm extends javax.swing.JFrame {
             }
         });
 
+        btnCliente.setText("Cliente");
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClienteActionPerformed(evt);
+            }
+        });
+
         menuCliente.setText("Novo");
         menuCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +106,8 @@ public class PrincipalForm extends javax.swing.JFrame {
                 .addComponent(btnVenda)
                 .addGap(18, 18, 18)
                 .addComponent(btnRelatorio)
+                .addGap(18, 18, 18)
+                .addComponent(btnCliente)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -106,7 +116,8 @@ public class PrincipalForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnProduto)
                     .addComponent(btnVenda)
-                    .addComponent(btnRelatorio))
+                    .addComponent(btnRelatorio)
+                    .addComponent(btnCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDesktopPane1)
                 .addContainerGap())
@@ -137,6 +148,12 @@ public class PrincipalForm extends javax.swing.JFrame {
         jDesktopPane1.add(relatorio);
         relatorio.setVisible(true);
     }//GEN-LAST:event_btnRelatorioActionPerformed
+
+    private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
+        PainelCliente cliente = new PainelCliente();
+        jDesktopPane1.add(cliente);
+        cliente.setVisible(true);
+    }//GEN-LAST:event_btnClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,6 +191,7 @@ public class PrincipalForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCliente;
     private javax.swing.JButton btnProduto;
     private javax.swing.JButton btnRelatorio;
     private javax.swing.JButton btnVenda;
