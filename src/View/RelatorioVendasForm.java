@@ -9,7 +9,7 @@ package View;
  *
  * @author Lucas Santiago
  */
-public class RelatorioVendasForm extends javax.swing.JFrame {
+public class RelatorioVendasForm extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form RelatorioVendasForm
