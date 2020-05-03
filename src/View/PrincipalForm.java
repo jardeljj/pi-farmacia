@@ -106,7 +106,7 @@ public class PrincipalForm extends javax.swing.JFrame {
                 .addComponent(btnVenda)
                 .addGap(18, 18, 18)
                 .addComponent(btnRelatorio)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCliente)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
