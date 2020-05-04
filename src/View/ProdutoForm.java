@@ -5,6 +5,9 @@
  */
 package View;
 
+import Validation.campoNumero;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Bruno
@@ -16,6 +19,9 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
      */
     public ProdutoForm() {
         initComponents();
+        // O campo só vai aceitar números!
+         txtUnidade.setDocument(new campoNumero());
+         txtPreco.setDocument(new campoNumero());
     }
 
     /**
@@ -27,19 +33,20 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         btnCancelar = new javax.swing.JButton();
         btnAdicionar = new javax.swing.JButton();
         panelProduto = new javax.swing.JPanel();
-        txtValidade = new javax.swing.JFormattedTextField();
         txtNomeProduto = new javax.swing.JTextField();
         lblUnidade = new javax.swing.JLabel();
         lblValidade = new javax.swing.JLabel();
         lblNomeProduto = new javax.swing.JLabel();
-        txtPreco = new javax.swing.JTextField();
         txtCategoria = new javax.swing.JTextField();
         txtUnidade = new javax.swing.JTextField();
         lblCategoria = new javax.swing.JLabel();
         lblPreco = new javax.swing.JLabel();
+        txtValidade = new javax.swing.JFormattedTextField();
+        txtPreco = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -49,16 +56,14 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
         btnCancelar.setText("Cancelar");
 
         btnAdicionar.setText("Adicionar");
-
-        panelProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Produto", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-
-        txtValidade.addActionListener(new java.awt.event.ActionListener() {
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValidadeActionPerformed(evt);
+                btnAdicionarActionPerformed(evt);
             }
         });
 
-        txtNomeProduto.setText("Nome do Produto");
+        panelProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Produto", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
         txtNomeProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeProdutoActionPerformed(evt);
@@ -71,20 +76,12 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
 
         lblNomeProduto.setText("Nome ");
 
-        txtPreco.setText("R$");
-        txtPreco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecoActionPerformed(evt);
-            }
-        });
-
         txtCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCategoriaActionPerformed(evt);
             }
         });
 
-        txtUnidade.setText("Quantidade");
         txtUnidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUnidadeActionPerformed(evt);
@@ -95,6 +92,19 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
 
         lblPreco.setText("Preço  ");
 
+        try {
+            txtValidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        txtPreco.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
+        txtPreco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelProdutoLayout = new javax.swing.GroupLayout(panelProduto);
         panelProduto.setLayout(panelProdutoLayout);
         panelProdutoLayout.setHorizontalGroup(
@@ -103,13 +113,12 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(panelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProdutoLayout.createSequentialGroup()
-                        .addGroup(panelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtValidade)
-                                .addComponent(lblUnidade, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtUnidade, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
-                            .addComponent(lblValidade))
-                        .addGap(50, 50, 50)
+                        .addGroup(panelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblUnidade)
+                            .addComponent(txtUnidade, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                            .addComponent(lblValidade)
+                            .addComponent(txtValidade))
+                        .addGap(36, 36, 36)
                         .addGroup(panelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCategoria)
                             .addGroup(panelProdutoLayout.createSequentialGroup()
@@ -128,8 +137,8 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(lblNomeProduto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addGroup(panelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUnidade)
                     .addComponent(lblPreco))
@@ -143,8 +152,8 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
                     .addComponent(lblCategoria))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtValidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtValidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -187,21 +196,59 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUnidadeActionPerformed
 
-    private void txtValidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtValidadeActionPerformed
-
-    private void txtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecoActionPerformed
-
     private void txtCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoriaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCategoriaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+      
+        
+         
+       if (   !txtNomeProduto.getText().trim().equals("") 
+            & !txtUnidade.getText().trim().equals("")
+            & !txtCategoria.getText().trim().equals("")
+            & !txtPreco.getText().trim().equals("")   
+            & !txtValidade.getText().equals("  /  /    ")){  
+            		
+            JOptionPane.showMessageDialog(rootPane, "Os dados foram salvo com sucesso!");   
+           
+            } 
+        
+        
+        if (txtNomeProduto.getText().trim().equals("")) {
+            
+            JOptionPane.showMessageDialog(null, " O campo Nome é obrigatório, por favor preencha-o! ", " AVISO ",JOptionPane.WARNING_MESSAGE);
+            
+        }  
+         if (txtUnidade.getText().trim().equals("")) {
+            
+            JOptionPane.showMessageDialog(null, " O campo Unidade é obrigatório, por favor preencha-o! ", " AVISO ",JOptionPane.WARNING_MESSAGE);
+            
+        }  
+        if (txtCategoria.getText().trim().equals("")) {
+            
+            JOptionPane.showMessageDialog(null, " O campo Categoria é obrigatório, por favor preencha-o! ", " AVISO ",JOptionPane.WARNING_MESSAGE);
+            
+        }
+         if (txtPreco.getText().trim().equals("")) {
+            
+            JOptionPane.showMessageDialog(null, " O campo Preço é obrigatório, por favor preencha-o! ", " AVISO ",JOptionPane.WARNING_MESSAGE);
+            
+        }
+         if (txtValidade.getText().equals("  /  /    ")) {
+            
+            JOptionPane.showMessageDialog(null, " O campo Validade é obrigatório, por favor preencha-o! ", " AVISO ",JOptionPane.WARNING_MESSAGE);
+            
+        }
+        
+    }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void txtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecoActionPerformed
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -240,6 +287,7 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblNomeProduto;
     private javax.swing.JLabel lblPreco;
@@ -248,7 +296,7 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel panelProduto;
     private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtNomeProduto;
-    private javax.swing.JTextField txtPreco;
+    private javax.swing.JFormattedTextField txtPreco;
     private javax.swing.JTextField txtUnidade;
     private javax.swing.JFormattedTextField txtValidade;
     // End of variables declaration//GEN-END:variables

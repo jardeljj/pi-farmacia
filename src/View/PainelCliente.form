@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="iconifiable" type="boolean" value="true"/>
@@ -87,69 +87,70 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jPasswordSenha" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="jTextCidade" pref="115" max="32767" attributes="0"/>
+                                              <Component id="jPasswordSenha" max="32767" attributes="0"/>
+                                          </Group>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jPasswordConfiSenha" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jTextEndereco" min="-2" pref="381" max="-2" attributes="0"/>
-                                              </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jTextCidade" min="-2" pref="115" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                   <Component id="txtCPFCliente" min="-2" pref="169" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
-                                                  <Component id="jBExcluir1" min="-2" pref="76" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jTextNumero" min="-2" pref="115" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="jFormattedTextIdade" max="32767" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jPasswordConfiSenha" min="-2" pref="115" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
+                                      </Group>
+                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jTextEndereco" min="-2" pref="381" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
+                                          <Component id="jBExcluir1" min="-2" pref="76" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jTextNumero" min="-2" pref="115" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="jFormattedTextIdade" max="32767" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="jTextBairro" min="-2" pref="202" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                                          <Component id="jBCancelar" min="-2" pref="93" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="jBSalvar" min="-2" pref="76" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jTextBairro" min="-2" pref="202" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jComboBoxSexo" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                                  <Component id="jBCancelar" min="-2" pref="93" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jTextTelefone" max="32767" attributes="0"/>
+                                                  <Component id="jBSalvar" min="-2" pref="76" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jComboBoxSexo" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jTextTelefone" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -161,12 +162,12 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="77" max="32767" attributes="0"/>
+                  <EmptySpace pref="81" max="32767" attributes="0"/>
                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="txtCPFConsulta" min="-2" pref="169" max="-2" attributes="0"/>
@@ -207,9 +208,9 @@
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jComboBoxSexo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtCPFCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jFormattedTextIdade" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -233,7 +234,7 @@
                       <Component id="txtCPFConsulta" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="197" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="201" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -290,7 +291,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
-            <Property name="text" type="java.lang.String" value="N&#xfa;mero:"/>
+            <Property name="text" type="java.lang.String" value="N&#xfa;mero(CEP):"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextNumero">
@@ -339,15 +340,16 @@
         </Component>
         <Component class="javax.swing.JPasswordField" name="jPasswordSenha">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="jPasswordConfiSenha">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPasswordConfiSenhaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBAlterar">
           <Properties>
@@ -418,17 +420,6 @@
             <Property name="text" type="java.lang.String" value="Telefone:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextTelefone">
-          <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextTelefoneActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="try{&#xd;&#xa; javax.swing.text.MaskFormatter telefone = new javax.swing.text.MaskFormatter(&quot; +## (##) #####-#### &quot;);&#xd;&#xa;&#xd;&#xa; jTextTelefone = new javax.swing.JFormattedTextField(telefone);&#xd;&#xa; }catch(Exception e){&#xd;&#xa;}"/>
-          </AuxValues>
-        </Component>
         <Component class="javax.swing.JButton" name="jBExcluir1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Excluir"/>
@@ -446,7 +437,7 @@
         <Component class="javax.swing.JFormattedTextField" name="txtCPFCliente">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="###########" subtype="-1" type="5"/>
+              <Format format="###.###.###-##" subtype="-1" type="5"/>
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -461,6 +452,9 @@
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFormattedTextIdadeActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtCPFConsulta">
           <Properties>
@@ -471,6 +465,13 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCPFConsultaActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="jTextTelefone">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="#####-####" subtype="-1" type="5"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
