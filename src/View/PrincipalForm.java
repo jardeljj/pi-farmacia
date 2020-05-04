@@ -150,9 +150,9 @@ public class PrincipalForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRelatorioActionPerformed
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
-        PainelCliente cliente = new PainelCliente();
-        jDesktopPane1.add(cliente);
-        cliente.setVisible(true);
+        PainelCliente tela = new PainelCliente();
+        jDesktopPane1.add(tela);
+        tela.setVisible(true);
     }//GEN-LAST:event_btnClienteActionPerformed
 
     /**
