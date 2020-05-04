@@ -9,7 +9,7 @@ package View;
  *
  * @author Bruno
  */
-public class CategoriaForm extends javax.swing.JFrame {
+public class CategoriaForm extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form categoriaPrototipo
