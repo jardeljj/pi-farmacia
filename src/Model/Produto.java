@@ -14,14 +14,13 @@ import java.util.Date;
  * @author jardel
  */
 public class Produto {
-    
+    private int id;
     private String nome;
     private String unidade;
     private double preco;
     private Date validade;
     private String categoria;
-
-   
+    private int estoque;   
     
     public Produto(){
     
@@ -78,5 +77,21 @@ public class Produto {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public int getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
     }
 }
