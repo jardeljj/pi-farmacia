@@ -13,3 +13,11 @@ create table produto (
 );
 
 select * from produto;
+
+create table categoria (
+	id smallint not null auto_increment,
+    nome char(30),
+    primary key (id)
+);
+
+select * from categoria;
