@@ -160,7 +160,7 @@ public class RelatorioVendasForm extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -226,7 +226,7 @@ public class RelatorioVendasForm extends javax.swing.JInternalFrame {
     }
 
     public void CarregarJTable() {
-
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
         Date dataIni = DataHelper.textoToDate(txtDataInicio.getText());
         Date dataFim = DataHelper.textoToDate(txtDataFim.getText());
 
@@ -246,7 +246,7 @@ public class RelatorioVendasForm extends javax.swing.JInternalFrame {
         if (vendas != null) {
             for (RelatorioVendas v : vendas) {
                 total += v.getPrecoTotal();
-                tmVendas.addRow(new Object[]{v.getIdVenda(), v.getDataVenda(), v.getNomeCli(), v.getPrecoTotal()});
+                tmVendas.addRow(new Object[]{v.getIdVenda(), DataHelper.dateToTexto(v.getDataVenda()), v.getNomeCli(), formatter.format(v.getPrecoTotal())});
             }
         }
         NumberFormat format = NumberFormat.getCurrencyInstance();
