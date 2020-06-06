@@ -58,7 +58,7 @@ public class ProdutoDAO {
             instrucaoSQL.setString(1, p.getNome());
             instrucaoSQL.setString(2, p.getUnidade());
             instrucaoSQL.setDouble(3, p.getPreco());
-            //instrucaoSQL.setDate(4, c.getValidade());
+            instrucaoSQL.setDate(4, new java.sql.Date(p.getValidade().getTime()));
             instrucaoSQL.setString(5, p.getCategoria());
             instrucaoSQL.setInt(6, p.getEstoque());
 
@@ -96,7 +96,7 @@ public class ProdutoDAO {
             instrucaoSQL.setString(1, p.getNome());
             instrucaoSQL.setString(2, p.getUnidade());
             instrucaoSQL.setDouble(3, p.getPreco());
-            //instrucaoSQL.setDate(4, c.getValidade());
+            instrucaoSQL.setDate(4, new java.sql.Date(p.getValidade().getTime()));
             instrucaoSQL.setString(5, p.getCategoria());
             instrucaoSQL.setInt(6, p.getEstoque());
             instrucaoSQL.setInt(7, p.getId());
@@ -163,45 +163,4 @@ public class ProdutoDAO {
 
         return listaProdutos;
     }
-
-    public static boolean adicionar(Produto p) {
-        boolean retorno = false;
-        Connection conexao = null;
-        PreparedStatement instrucaoSQL = null;
-        try {
-            conexao = GerenciadorConexao.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("INSERT INTO produto (nome, unidade, preco, validade, categoria, estoque) VALUES (?, ?, ?, ?, ?, ?, ?)",
-                    Statement.RETURN_GENERATED_KEYS);
-
-            instrucaoSQL.setString(1, p.getNome());
-            instrucaoSQL.setString(2, p.getUnidade());
-            instrucaoSQL.setDouble(3, p.getPreco());
-            instrucaoSQL.setDate(4, (Date) p.getValidade());
-            instrucaoSQL.setString(5, p.getCategoria());
-            instrucaoSQL.setInt(6, p.getEstoque());
-
-            int linhasAfetadas = instrucaoSQL.executeUpdate();
-
-            if (linhasAfetadas > 0) {
-                retorno = true;
-
-                ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys(); //Recupero o ID do cliente
-                if (generatedKeys.next()) {
-                    p.setId(generatedKeys.getInt(1));
-                } else {
-                    throw new SQLException("Falha ao obter o ID do computador.");
-                }
-            } else {
-                retorno = false;
-            }
-
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            retorno = false;
-        } finally {
-            GerenciadorConexao.fecharConexao(conexao, instrucaoSQL);
-        }
-        return retorno;
-    }
-
 }

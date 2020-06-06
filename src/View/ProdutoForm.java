@@ -5,10 +5,10 @@
  */
 package View;
 
+import Common.DataHelper;
 import DAO.ProdutoDAO;
 import Model.Produto;
 import Validation.campoNumero;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.Date;
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -25,26 +25,21 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
     public ProdutoForm() {
         this.objProduto = new Produto();
         initComponents();
-        setLocationRelativeTo(null);
         // O campo só vai aceitar números!
-        txtUnidade.setDocument(new campoNumero());
         txtPreco.setDocument(new campoNumero());
+        txtEstoque.setDocument(new campoNumero());
     }
 
     public ProdutoForm(Produto objProduto) {
-        Format formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String s = formatter.format(date);
         initComponents();
         this.objProduto = objProduto;
-
+        
         this.txtNomeProduto.setText(objProduto.getNome());
         this.txtUnidade.setText(objProduto.getUnidade());
         this.txtPreco.setText(Double.toString(objProduto.getPreco()));
-        this.txtValidade.setText(Date.toString(objProduto.getValidade()));
+        this.txtValidade.setText(DataHelper.dateToTexto(objProduto.getValidade()));
         this.txtCategoria.setText(objProduto.getCategoria());
         this.txtEstoque.setText(Integer.toString(objProduto.getEstoque()));
-        
-        setLocationRelativeTo(null);
     }
 
     /**
@@ -245,60 +240,53 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
         objProduto.setNome(txtNomeProduto.getText());
         objProduto.setUnidade(txtUnidade.getText());
         objProduto.setPreco(Double.parseDouble(txtPreco.getText()));
-        objProduto.setValidade(Date.valueOf(txtValidade.getText()));
+        objProduto.setValidade(DataHelper.textoToDate(txtValidade.getText()));
         objProduto.setCategoria(txtUnidade.getText());
         objProduto.setEstoque(Integer.parseInt(txtEstoque.getText()));
-
-        try {
-            if (this.objProduto.getId() > 0) {
-                ProdutoDAO.atualizar(objProduto);
-            } else {
-                ProdutoDAO.salvar(objProduto);
-            }
-
-            JOptionPane.showMessageDialog(this, "Adicinado com sucesso!");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Falha ao gravar no banco de dados\n" + e.getMessage(),
-                    "Aviso de Falha", JOptionPane.ERROR_MESSAGE);
-        }
 
         if (txtNomeProduto.getText().trim().equals("")) {
 
             JOptionPane.showMessageDialog(null, " O campo Nome é obrigatório, por favor preencha-o! ", " AVISO ", JOptionPane.WARNING_MESSAGE);
 
-        }
-        if (txtUnidade.getText().trim().equals("")) {
+        } else if (txtUnidade.getText().trim().equals("")) {
 
             JOptionPane.showMessageDialog(null, " O campo Unidade é obrigatório, por favor preencha-o! ", " AVISO ", JOptionPane.WARNING_MESSAGE);
 
-        }
-        if (txtCategoria.getText().trim().equals("")) {
+        } else if (txtCategoria.getText().trim().equals("")) {
 
             JOptionPane.showMessageDialog(null, " O campo Categoria é obrigatório, por favor preencha-o! ", " AVISO ", JOptionPane.WARNING_MESSAGE);
 
-        }
-        if (txtPreco.getText().trim().equals("")) {
+        } else if (txtPreco.getText().trim().equals("")) {
 
             JOptionPane.showMessageDialog(null, " O campo Preço é obrigatório, por favor preencha-o! ", " AVISO ", JOptionPane.WARNING_MESSAGE);
 
-        }
-        if (txtValidade.getText().equals("  /  /    ")) {
+        } else if (txtValidade.getText().equals("  /  /    ")) {
 
             JOptionPane.showMessageDialog(null, " O campo Validade é obrigatório, por favor preencha-o! ", " AVISO ", JOptionPane.WARNING_MESSAGE);
 
-        }
-
-        if (txtEstoque.getText().equals("")) {
+        }else if (txtEstoque.getText().equals("")) {
 
             JOptionPane.showMessageDialog(null, " O campo estoque é obrigatório, por favor preencha-o! ", " AVISO ", JOptionPane.WARNING_MESSAGE);
-        }
+        } else{
+            try {
+                if (this.objProduto.getId() > 0) {
+                    ProdutoDAO.atualizar(objProduto);
+                } else {
+                    ProdutoDAO.salvar(objProduto);
+                }
 
-        txtNomeProduto.setText("");
-        txtUnidade.setText("");
-        txtPreco.setText("");
-        txtValidade.setText("");
-        txtCategoria.setText("");
-        txtEstoque.setText("");
+                JOptionPane.showMessageDialog(this, "Adicinado com sucesso!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Falha ao gravar no banco de dados\n" + e.getMessage(),
+                        "Aviso de Falha", JOptionPane.ERROR_MESSAGE);
+            }
+            txtNomeProduto.setText("");
+            txtUnidade.setText("");
+            txtPreco.setText("");
+            txtValidade.setText("");
+            txtCategoria.setText("");
+            txtEstoque.setText("");
+        }
 
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
@@ -365,7 +353,4 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField txtValidade;
     // End of variables declaration//GEN-END:variables
 
-    private void setLocationRelativeTo(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
