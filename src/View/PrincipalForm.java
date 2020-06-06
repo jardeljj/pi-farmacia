@@ -38,8 +38,8 @@ public class PrincipalForm extends javax.swing.JFrame {
         btnProduto = new javax.swing.JButton();
         btnVenda = new javax.swing.JButton();
         btnRelatorio = new javax.swing.JButton();
-        btnCliente = new javax.swing.JButton();
         btnRelatorio1 = new javax.swing.JButton();
+        btnCliente = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCliente = new javax.swing.JMenu();
 
@@ -54,7 +54,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
+            .addGap(0, 684, Short.MAX_VALUE)
         );
 
         btnProduto.setText("Produto");
@@ -78,17 +78,17 @@ public class PrincipalForm extends javax.swing.JFrame {
             }
         });
 
-        btnCliente.setText("Cliente");
-        btnCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClienteActionPerformed(evt);
-            }
-        });
-
         btnRelatorio1.setText("Pedidos");
         btnRelatorio1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRelatorio1ActionPerformed(evt);
+            }
+        });
+
+        btnCliente.setText("Cliente");
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClienteActionPerformed(evt);
             }
         });
 
@@ -108,27 +108,28 @@ public class PrincipalForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jDesktopPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(16, 16, 16)
                 .addComponent(btnProduto)
+                .addGap(13, 13, 13)
+                .addComponent(btnCliente)
                 .addGap(18, 18, 18)
                 .addComponent(btnVenda)
-                .addGap(18, 18, 18)
-                .addComponent(btnCliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRelatorio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRelatorio1)
+                .addGap(18, 18, 18)
+                .addComponent(btnRelatorio)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnProduto)
-                    .addComponent(btnVenda)
-                    .addComponent(btnRelatorio)
                     .addComponent(btnCliente)
-                    .addComponent(btnRelatorio1))
+                    .addComponent(btnVenda)
+                    .addComponent(btnRelatorio1)
+                    .addComponent(btnRelatorio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDesktopPane1)
                 .addContainerGap())

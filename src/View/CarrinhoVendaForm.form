@@ -92,18 +92,18 @@
                   </Group>
                   <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtQuantidade" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
-                      <Component id="lblUnidade" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
+                      <Component id="txtQuantidade" min="-2" pref="61" max="-2" attributes="0"/>
+                      <Component id="lblUnidade" min="-2" pref="74" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lbValorProduto" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
-                      <Component id="lblValor" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbValorProduto" min="-2" pref="95" max="-2" attributes="0"/>
+                      <Component id="lblValor" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lbValorTotalProduto" alignment="0" min="-2" pref="87" max="-2" attributes="0"/>
-                      <Component id="lblValorTotal" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
+                      <Component id="lblValorTotal" min="-2" pref="76" max="-2" attributes="0"/>
+                      <Component id="lbValorTotalProduto" min="-2" pref="95" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="btAdicionar" min="-2" pref="173" max="-2" attributes="0"/>
@@ -113,8 +113,12 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btAdicionar" min="-2" pref="59" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
@@ -132,20 +136,17 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lbValorTotalProduto" alignment="0" min="-2" pref="18" max="-2" attributes="0"/>
-                                  <Component id="lbValorProduto" alignment="1" min="-2" pref="18" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txtNomeProduto" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="btBuscarProduto" pref="0" max="32767" attributes="0"/>
+                              <Component id="txtQuantidade" max="32767" attributes="0"/>
+                              <Component id="lbValorProduto" max="32767" attributes="0"/>
+                              <Component id="lbValorTotalProduto" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btAdicionar" min="-2" pref="59" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtNomeProduto" max="32767" attributes="0"/>
+                              <Component id="btBuscarProduto" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
