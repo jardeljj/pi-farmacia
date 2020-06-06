@@ -5,6 +5,7 @@
  */
 package View;
 
+import Common.DataHelper;
 import DAO.RelatorioVendasDAO;
 import Model.RelatorioVendas;
 import java.text.DateFormat;
@@ -15,6 +16,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import org.joda.time.DateTime;
 
 /**
  *
@@ -30,12 +32,12 @@ public class RelatorioVendasForm extends javax.swing.JInternalFrame {
     public RelatorioVendasForm() {
         initComponents();
         objRevatorioVendas = new RelatorioVendas();
-        
-        try {
-            CarregarJTable();
-        } catch (ParseException ex) {
-            Logger.getLogger(RelatorioVendasForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        Date dt = new Date();
+        DateTime dtOrg = new DateTime(dt);
+        this.txtDataInicio.setText(DataHelper.dateToTexto(dtOrg.plusMonths(-1).toDate()));
+        this.txtDataFim.setText(DataHelper.dateToTexto(new Date()));
+        CarregarJTable();
     }
 
     /**
@@ -165,11 +167,9 @@ public class RelatorioVendasForm extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        try {
-            CarregarJTable();
-        } catch (ParseException ex) {
-            Logger.getLogger(RelatorioVendasForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+        CarregarJTable();
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
@@ -209,14 +209,13 @@ public class RelatorioVendasForm extends javax.swing.JInternalFrame {
             }
         });
     }
-    
-    public void CarregarJTable() throws ParseException {
-        DateFormat formatado = new SimpleDateFormat("dd/MM/yyyy");
-        
-        Date dataIni = (Date)formatado.parse(txtDataInicio.getText());
-        Date dataFim =(Date)formatado.parse(txtDataFim.getText());
 
-        ArrayList<RelatorioVendas> vendas = RelatorioVendasDAO.consultarVendas(dataIni,dataFim);
+    public void CarregarJTable() {
+
+        Date dataIni = DataHelper.textoToDate(txtDataInicio.getText());
+        Date dataFim = DataHelper.textoToDate(txtDataFim.getText());
+
+        ArrayList<RelatorioVendas> vendas = RelatorioVendasDAO.consultarVendas(dataIni, dataFim);
 
         DefaultTableModel tmVendas = new DefaultTableModel();
         tmVendas.addColumn("Id_Venda");
@@ -228,9 +227,10 @@ public class RelatorioVendasForm extends javax.swing.JInternalFrame {
         tblVendas.removeColumn(tblVendas.getColumnModel().getColumn(0));
 
         tmVendas.setRowCount(0);
-
-        for (RelatorioVendas v : vendas) {
-            tmVendas.addRow(new Object[]{v.getIdVenda(), v.getDataVenda(), v.getNomeCli(), v.getPrecoTotal()});
+        if (vendas != null) {
+            for (RelatorioVendas v : vendas) {
+                tmVendas.addRow(new Object[]{v.getIdVenda(), v.getDataVenda(), v.getNomeCli(), v.getPrecoTotal()});
+            }
         }
     }
 
