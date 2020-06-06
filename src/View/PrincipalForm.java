@@ -39,6 +39,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         btnVenda = new javax.swing.JButton();
         btnRelatorio = new javax.swing.JButton();
         btnCliente = new javax.swing.JButton();
+        btnRelatorio1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCliente = new javax.swing.JMenu();
 
@@ -84,6 +85,13 @@ public class PrincipalForm extends javax.swing.JFrame {
             }
         });
 
+        btnRelatorio1.setText("Pedidos");
+        btnRelatorio1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRelatorio1ActionPerformed(evt);
+            }
+        });
+
         menuCliente.setText("Novo");
         menuCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,6 +116,8 @@ public class PrincipalForm extends javax.swing.JFrame {
                 .addComponent(btnCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRelatorio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRelatorio1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -117,7 +127,8 @@ public class PrincipalForm extends javax.swing.JFrame {
                     .addComponent(btnProduto)
                     .addComponent(btnVenda)
                     .addComponent(btnRelatorio)
-                    .addComponent(btnCliente))
+                    .addComponent(btnCliente)
+                    .addComponent(btnRelatorio1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDesktopPane1)
                 .addContainerGap())
@@ -154,6 +165,12 @@ public class PrincipalForm extends javax.swing.JFrame {
         jDesktopPane1.add(tela);
         tela.setVisible(true);
     }//GEN-LAST:event_btnClienteActionPerformed
+
+    private void btnRelatorio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorio1ActionPerformed
+        PedidoConsultarForm pedidos = new PedidoConsultarForm();
+        jDesktopPane1.add(pedidos);
+        pedidos.setVisible(true);
+    }//GEN-LAST:event_btnRelatorio1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,6 +211,7 @@ public class PrincipalForm extends javax.swing.JFrame {
     private javax.swing.JButton btnCliente;
     private javax.swing.JButton btnProduto;
     private javax.swing.JButton btnRelatorio;
+    private javax.swing.JButton btnRelatorio1;
     private javax.swing.JButton btnVenda;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;

@@ -17,12 +17,17 @@ import java.util.Date;
  */
 public class CarrinhoCompra {
     
+    int id;
     Date dataCriacao;
     ArrayList<ProdutoCarrinho> produtos;
     Cliente cliente;
 
     public Cliente getCliente() {
         return cliente;
+    }
+    
+    public void setProdutos(ArrayList<ProdutoCarrinho> produtos) {
+        this.produtos = produtos;
     }
 
     public void setCliente(Cliente cliente) {
@@ -39,6 +44,14 @@ public class CarrinhoCompra {
 
     public void setDataCriacao(Date dataCriacao) {
         this.dataCriacao = dataCriacao;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public ArrayList<ProdutoCarrinho> getProdutos() {
