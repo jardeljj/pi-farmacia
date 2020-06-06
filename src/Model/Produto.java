@@ -17,7 +17,7 @@ public class Produto {
     private int id;
     private String nome;
     private String unidade;
-    private double preco;
+    private double preco ;
     private Date validade;
     private String categoria;
     private int estoque;   
