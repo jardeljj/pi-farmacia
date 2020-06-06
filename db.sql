@@ -21,3 +21,16 @@ create table categoria (
 );
 
 select * from categoria;
+
+CREATE TABLE `vendas` (
+  `id_venda` smallint(6) NOT NULL AUTO_INCREMENT,
+  `nome_cliente` varchar(80) NOT NULL,
+  `id_prod` varchar(40) NOT NULL,
+  `data_venda` date NOT NULL,
+  `qnt_vendida` int(11) NOT NULL,
+  `preco_total` float NOT NULL,
+  PRIMARY KEY (`id_venda`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+
+
+select * from vendas;
