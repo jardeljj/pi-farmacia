@@ -88,6 +88,7 @@ public class PedidoConsultarForm extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setResizable(true);
+        setTitle("Consulta de pedidos");
 
         tblProdutos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
@@ -239,6 +240,8 @@ public class PedidoConsultarForm extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        getAccessibleContext().setAccessibleName("Consulta de pedidos");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
