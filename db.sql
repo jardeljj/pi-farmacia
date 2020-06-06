@@ -22,15 +22,24 @@ create table categoria (
 
 select * from categoria;
 
-CREATE TABLE `vendas` (
-  `id_venda` smallint(6) NOT NULL AUTO_INCREMENT,
-  `nome_cliente` varchar(80) NOT NULL,
-  `id_prod` varchar(40) NOT NULL,
-  `data_venda` date NOT NULL,
-  `qnt_vendida` int(11) NOT NULL,
-  `preco_total` float NOT NULL,
-  PRIMARY KEY (`id_venda`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE pedido (
+  id smallint not null auto_increment,
+  cliente int,
+  total decimal(10,2),
+  inclusao date NOT NULL,
+  primary key (id)
+);
 
+select * from pedido;
 
-select * from vendas;
+CREATE TABLE pedido_item (
+  id smallint not null auto_increment,
+  id_venda int,
+  id_produto int,
+  preco decimal(10,2),
+  quantidade int,
+  total decimal(10,2),
+  primary key (id)
+);
+
+select * from pedido_item;

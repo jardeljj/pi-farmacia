@@ -1,7 +1,7 @@
 package Model;
 
 
-import Model.Produto;
+import Model.ProdutoCarrinho;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,8 +17,17 @@ import java.util.Date;
  */
 public class CarrinhoCompra {
     
-    public Date dataCriacao;
-    public ArrayList<Produto> produtos;
+    Date dataCriacao;
+    ArrayList<ProdutoCarrinho> produtos;
+    Cliente cliente;
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
     
     public CarrinhoCompra() {
         this.produtos = new ArrayList<>();
@@ -32,14 +41,47 @@ public class CarrinhoCompra {
         this.dataCriacao = dataCriacao;
     }
 
-    public ArrayList<Produto> getProdutos() {
+    public ArrayList<ProdutoCarrinho> getProdutos() {
         return produtos;
     }
-
-    public void adicinarProduto(Produto produto) {
-        if (produto != null) {
-            this.produtos.add(produto);
+    
+    public void removerProduto(ProdutoCarrinho produto) {
+        ArrayList<ProdutoCarrinho> novoProduto = new ArrayList<>();
+        
+        for (ProdutoCarrinho c : produtos) {
+            if (c.getId() != produto.getId()) {
+                novoProduto.add(c);
+            }
         }
+        
+        produtos = novoProduto;
+    }
+
+    public void adicinarProduto(ProdutoCarrinho produto) {
+        if (this.produtos == null)
+            this.produtos = new  ArrayList<>();
+
+        if (produto != null) {
+            ProdutoCarrinho jaIncluido = null;
+            for (ProdutoCarrinho c : produtos) {
+                if (c.getId() == produto.getId())
+                    jaIncluido = c;
+            }
+            if (jaIncluido != null) {
+                jaIncluido.setQuantidade(jaIncluido.getQuantidade() + produto.getQuantidade());
+                jaIncluido.setTotal(jaIncluido.getTotal()+ produto.getTotal());
+            } else {
+                this.produtos.add(produto);
+            }
+        }
+    }
+
+    public double getTotal() {
+        double total = 0;
+        for (ProdutoCarrinho c : produtos) {
+            total += c.getTotal();
+        }
+        return total;
     }
     
 }
