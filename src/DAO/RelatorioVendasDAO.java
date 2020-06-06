@@ -28,7 +28,7 @@ public class RelatorioVendasDAO {
 
         try {
             conexao = GerenciadorConexao.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("SELECT * FROM vendas WHERE data_venda BETWEEN ('?') AND ('?')");
+            instrucaoSQL = conexao.prepareStatement("SELECT * FROM vendas WHERE data_venda BETWEEN ? AND ?");
             instrucaoSQL.setDate(1, new java.sql.Date(dataInicio.getTime()));
             instrucaoSQL.setDate(2, new java.sql.Date(dataFim.getTime()));
             rs = instrucaoSQL.executeQuery();
