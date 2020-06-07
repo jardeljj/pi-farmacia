@@ -12,8 +12,8 @@ import java.util.Date;
  * @author PC-adim
  */
 public class Cliente {
-    
-    private int cpf;
+    private int id;
+    private String cpf;
     private String nome;
     private String endereco;
     private int numero;
@@ -23,17 +23,25 @@ public class Cliente {
     private int telefone;
     private String sexo;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     /**
      * @return the cpf
      */
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
     /**
      * @param Cpf the cpf to set
      */
-    public void setCpf(int Cpf) {
+    public void setCpf(String Cpf) {
         this.cpf = Cpf;
     }
 

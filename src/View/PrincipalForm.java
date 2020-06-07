@@ -2,7 +2,7 @@ package View;
 
 
 import View.CarrinhoVendaForm;
-import View.ProdutoForm;
+import View.ConsultarProduto;
 import View.RelatorioVendasForm;
 import View.PainelCliente;
 
@@ -38,6 +38,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         btnProduto = new javax.swing.JButton();
         btnVenda = new javax.swing.JButton();
         btnRelatorio = new javax.swing.JButton();
+        btnRelatorio1 = new javax.swing.JButton();
         btnCliente = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCliente = new javax.swing.JMenu();
@@ -53,7 +54,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
+            .addGap(0, 684, Short.MAX_VALUE)
         );
 
         btnProduto.setText("Produto");
@@ -74,6 +75,13 @@ public class PrincipalForm extends javax.swing.JFrame {
         btnRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRelatorioActionPerformed(evt);
+            }
+        });
+
+        btnRelatorio1.setText("Pedidos");
+        btnRelatorio1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRelatorio1ActionPerformed(evt);
             }
         });
 
@@ -100,24 +108,28 @@ public class PrincipalForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jDesktopPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(16, 16, 16)
                 .addComponent(btnProduto)
+                .addGap(13, 13, 13)
+                .addComponent(btnCliente)
                 .addGap(18, 18, 18)
                 .addComponent(btnVenda)
-                .addGap(18, 18, 18)
-                .addComponent(btnCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRelatorio1)
+                .addGap(18, 18, 18)
                 .addComponent(btnRelatorio)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnProduto)
+                    .addComponent(btnCliente)
                     .addComponent(btnVenda)
-                    .addComponent(btnRelatorio)
-                    .addComponent(btnCliente))
+                    .addComponent(btnRelatorio1)
+                    .addComponent(btnRelatorio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDesktopPane1)
                 .addContainerGap())
@@ -132,8 +144,9 @@ public class PrincipalForm extends javax.swing.JFrame {
 
     private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
         // TODO add your handling code here:
-        ProdutoForm produto = new ProdutoForm();        
+        ConsultarProduto produto = new ConsultarProduto();        
         jDesktopPane1.add(produto);
+        produto.desktopPane = jDesktopPane1;
         produto.setVisible(true);
     }//GEN-LAST:event_btnProdutoActionPerformed
 
@@ -154,6 +167,12 @@ public class PrincipalForm extends javax.swing.JFrame {
         jDesktopPane1.add(tela);
         tela.setVisible(true);
     }//GEN-LAST:event_btnClienteActionPerformed
+
+    private void btnRelatorio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelatorio1ActionPerformed
+        PedidoConsultarForm pedidos = new PedidoConsultarForm();
+        jDesktopPane1.add(pedidos);
+        pedidos.setVisible(true);
+    }//GEN-LAST:event_btnRelatorio1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,6 +213,7 @@ public class PrincipalForm extends javax.swing.JFrame {
     private javax.swing.JButton btnCliente;
     private javax.swing.JButton btnProduto;
     private javax.swing.JButton btnRelatorio;
+    private javax.swing.JButton btnRelatorio1;
     private javax.swing.JButton btnVenda;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar jMenuBar1;
