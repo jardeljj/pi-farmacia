@@ -19,7 +19,8 @@ import javax.swing.JOptionPane;
  * @author Bruno
  */
 public class ProdutoForm extends javax.swing.JInternalFrame {
-
+    
+    public String modoTela = "Criação";
     Produto objProduto;
 
     public ProdutoForm() {
@@ -27,7 +28,7 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
         initComponents();
         // O campo só vai aceitar números!
         txtPreco.setDocument(new campoNumero());
-        txtEstoque.setDocument(new campoNumero());
+        txtQtnestoque.setDocument(new campoNumero());
     }
 
     public ProdutoForm(Produto objProduto) {
@@ -39,7 +40,7 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
         this.txtPreco.setText(Double.toString(objProduto.getPreco()));
         this.txtValidade.setText(DataHelper.dateToTexto(objProduto.getValidade()));
         this.txtCategoria.setText(objProduto.getCategoria());
-        this.txtEstoque.setText(Integer.toString(objProduto.getEstoque()));
+        this.txtQtnestoque.setText(Integer.toString(objProduto.getEstoque()));
     }
 
     /**
@@ -65,10 +66,11 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
         txtValidade = new javax.swing.JFormattedTextField();
         txtPreco = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
-        txtEstoque = new javax.swing.JTextField();
+        txtQtnestoque = new javax.swing.JTextField();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
 
@@ -129,7 +131,7 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("Estoque");
+        jLabel1.setText("Qnt.Estoque");
 
         javax.swing.GroupLayout panelProdutoLayout = new javax.swing.GroupLayout(panelProduto);
         panelProduto.setLayout(panelProdutoLayout);
@@ -161,7 +163,7 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
                     .addGroup(panelProdutoLayout.createSequentialGroup()
                         .addGroup(panelProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtQtnestoque, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panelProdutoLayout.setVerticalGroup(
@@ -190,7 +192,7 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtQtnestoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,10 +215,10 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(panelProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCancelar))
                 .addContainerGap())
         );
 
@@ -242,7 +244,7 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
         objProduto.setPreco(Double.parseDouble(txtPreco.getText()));
         objProduto.setValidade(DataHelper.textoToDate(txtValidade.getText()));
         objProduto.setCategoria(txtUnidade.getText());
-        objProduto.setEstoque(Integer.parseInt(txtEstoque.getText()));
+        objProduto.setEstoque(Integer.parseInt(txtQtnestoque.getText()));
 
         if (txtNomeProduto.getText().trim().equals("")) {
 
@@ -264,7 +266,7 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
 
             JOptionPane.showMessageDialog(null, " O campo Validade é obrigatório, por favor preencha-o! ", " AVISO ", JOptionPane.WARNING_MESSAGE);
 
-        }else if (txtEstoque.getText().equals("")) {
+        }else if (txtQtnestoque.getText().equals("")) {
 
             JOptionPane.showMessageDialog(null, " O campo estoque é obrigatório, por favor preencha-o! ", " AVISO ", JOptionPane.WARNING_MESSAGE);
         } else{
@@ -285,7 +287,7 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
             txtPreco.setText("");
             txtValidade.setText("");
             txtCategoria.setText("");
-            txtEstoque.setText("");
+            txtQtnestoque.setText("");
         }
 
     }//GEN-LAST:event_btnAdicionarActionPerformed
@@ -346,9 +348,9 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblValidade;
     private javax.swing.JPanel panelProduto;
     private javax.swing.JTextField txtCategoria;
-    private javax.swing.JTextField txtEstoque;
     private javax.swing.JTextField txtNomeProduto;
     private javax.swing.JFormattedTextField txtPreco;
+    private javax.swing.JTextField txtQtnestoque;
     private javax.swing.JTextField txtUnidade;
     private javax.swing.JFormattedTextField txtValidade;
     // End of variables declaration//GEN-END:variables
