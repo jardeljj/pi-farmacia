@@ -59,7 +59,7 @@ public class ProdutoDAO {
             instrucaoSQL.setString(2, p.getUnidade());
             instrucaoSQL.setDouble(3, p.getPreco());
             instrucaoSQL.setDate(4, new java.sql.Date(p.getValidade().getTime()));
-            instrucaoSQL.setString(5, p.getCategoria());
+            instrucaoSQL.setInt(5, p.getCategoria());
             instrucaoSQL.setInt(6, p.getEstoque());
 
             int linhasAfetadas = instrucaoSQL.executeUpdate();
@@ -97,7 +97,7 @@ public class ProdutoDAO {
             instrucaoSQL.setString(2, p.getUnidade());
             instrucaoSQL.setDouble(3, p.getPreco());
             instrucaoSQL.setDate(4, new java.sql.Date(p.getValidade().getTime()));
-            instrucaoSQL.setString(5, p.getCategoria());
+            instrucaoSQL.setInt(5, p.getCategoria());
             instrucaoSQL.setInt(6, p.getEstoque());
             instrucaoSQL.setInt(7, p.getId());
             int linhasAfetadas = instrucaoSQL.executeUpdate();
@@ -126,7 +126,7 @@ public class ProdutoDAO {
         try {
             conexao = GerenciadorConexao.abrirConexao();
 
-            instrucaoSQL = conexao.prepareStatement("SELECT * FROM produto WHERE id = ?");
+            instrucaoSQL = conexao.prepareStatement("SELECT pro.*, cat.nome nome_categoria FROM produto pro left join categoria cat on pro.categoria = cat.id WHERE pro.id = ?");
             instrucaoSQL.setInt(1, id);
             rs = instrucaoSQL.executeQuery();
 
@@ -137,8 +137,9 @@ public class ProdutoDAO {
                 produto.setUnidade(rs.getString("unidade"));
                 produto.setPreco(rs.getDouble("preco"));
                 produto.setValidade(rs.getDate("validade"));
-                produto.setCategoria(rs.getString("categoria"));
+                produto.setCategoria(rs.getInt("categoria"));
                 produto.setEstoque(rs.getInt("estoque"));
+                produto.setNomeCategoria(rs.getString("nome_categoria"));
                 break;
             }
 
@@ -162,10 +163,10 @@ public class ProdutoDAO {
 
         try {
             conexao = GerenciadorConexao.abrirConexao();
-            String query = "SELECT * FROM produto WHERE 1 = 1";
+            String query = "SELECT pro.*, cat.nome nome_categoria FROM produto pro left join categoria cat on pro.categoria = cat.id WHERE 1 = 1";
 
             if (filtroNome) {
-                query += " AND nome like ?";
+                query += " AND pro.nome like ?";
             }
 
             instrucaoSQL = conexao.prepareStatement(query);
@@ -183,8 +184,9 @@ public class ProdutoDAO {
                 p.setUnidade(rs.getString("unidade"));
                 p.setPreco(rs.getDouble("preco"));
                 p.setValidade(rs.getDate("validade"));
-                p.setCategoria(rs.getString("categoria"));
+                p.setCategoria(rs.getInt("categoria"));
                 p.setEstoque(rs.getInt("estoque"));
+                p.setNomeCategoria(rs.getString("nome_categoria"));
 
                 listaProdutos.add(p);
             }

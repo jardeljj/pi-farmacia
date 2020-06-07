@@ -7,12 +7,13 @@ create table produto (
     unidade char(30),
     preco decimal(10,2),
     validade datetime,
-    categoria char(30),
+    categoria int,
     estoque int,
     primary key (id)
 );
 
 select * from produto;
+
 
 create table categoria (
 	id smallint not null auto_increment,

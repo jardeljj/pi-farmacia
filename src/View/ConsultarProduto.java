@@ -265,7 +265,7 @@ public class ConsultarProduto extends javax.swing.JInternalFrame {
         
         for (Produto p : produtos) {
             
-            tmProdutos.addRow(new Object[]{p.getId(), p.getNome(), p.getUnidade(), formatter.format(p.getPreco()), DataHelper.dateToTexto(p.getValidade()), p.getCategoria(), p.getEstoque()});
+            tmProdutos.addRow(new Object[]{p.getId(), p.getNome(), p.getUnidade(), formatter.format(p.getPreco()), DataHelper.dateToTexto(p.getValidade()), p.getNomeCategoria(), p.getEstoque()});
         }
         
     }
