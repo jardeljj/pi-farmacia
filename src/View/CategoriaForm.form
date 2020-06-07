@@ -49,7 +49,7 @@
                   <Component id="btnAdicionarCat" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCancelarCat" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="123" max="32767" attributes="0"/>
+              <EmptySpace pref="129" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,9 +71,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblCategoria" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtCategoria" min="-2" pref="193" max="-2" attributes="0"/>
+                      <Component id="txtCategoria" min="-2" pref="185" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -82,7 +82,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblCategoria" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="txtCategoria" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -90,12 +90,12 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="txtCategoria">
-        </Component>
         <Component class="javax.swing.JLabel" name="lblCategoria">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tipo da categoria "/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtCategoria">
         </Component>
       </SubComponents>
     </Container>
@@ -111,6 +111,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarCatActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

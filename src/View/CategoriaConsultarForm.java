@@ -5,34 +5,46 @@
  */
 package View;
 
-import Common.DataHelper;
-import DAO.ProdutoDAO;
-import Model.Produto;
-import View.ProdutoForm;
-import java.text.NumberFormat;
+import DAO.CategoriaDAO;
+import Model.Categoria;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author jarde
+ * @author fcane
  */
-public class ConsultarProduto extends javax.swing.JInternalFrame {
+public class CategoriaConsultarForm extends javax.swing.JInternalFrame {
 
-    Produto objProduto;
     JDesktopPane desktopPane;
+    Categoria categoria;
 
     /**
-     * Creates new form ConsultarProduto
+     * Creates new form CategoriaConsultarForma
      */
-    public ConsultarProduto() {
+    public CategoriaConsultarForm() {
         initComponents();
-        objProduto = new Produto();
-
         CarregarJTable();
+    }
+    
+    public void CarregarJTable() {
+        String nome = txtNome.getText();
+        ArrayList<Categoria> categorias = CategoriaDAO.consultarCategoria(nome);
+
+        DefaultTableModel tmCategorias = new DefaultTableModel();
+        tmCategorias.addColumn("id");
+        tmCategorias.addColumn("nome");
+        
+        tblCategoria.setModel(tmCategorias);
+
+        tmCategorias.setRowCount(0);
+        
+        for (Categoria c : categorias) {
+            
+            tmCategorias.addRow(new Object[]{ c.getId(), c.getNome()});
+        }
     }
 
     /**
@@ -44,20 +56,28 @@ public class ConsultarProduto extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        txtNomeProduto = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblProdutos = new javax.swing.JTable();
+        tblCategoria = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        txtNome = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         btnAdicionar = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
 
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
+        setTitle("Categoria");
+
+        tblCategoria.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Nome"
+            }
+        ));
+        jScrollPane1.setViewportView(tblCategoria);
 
         jLabel1.setText("Nome:");
 
@@ -67,16 +87,6 @@ public class ConsultarProduto extends javax.swing.JInternalFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-
-        tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "id_produto", "Nome", "Unidade", "Preço", "Validade", "Categoria", "Qnt.Estoque"
-            }
-        ));
-        jScrollPane1.setViewportView(tblProdutos);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11))); // NOI18N
 
@@ -135,12 +145,12 @@ public class ConsultarProduto extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNomeProduto)
+                        .addComponent(txtNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -151,13 +161,13 @@ public class ConsultarProduto extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
@@ -167,108 +177,45 @@ public class ConsultarProduto extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
         CarregarJTable();
-
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        ProdutoForm telaCadastro = new ProdutoForm();
+        CategoriaForm telaCadastro = new CategoriaForm();
         desktopPane.add(telaCadastro);
         telaCadastro.setVisible(true);
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        if(tblProdutos.getRowCount()>0)
+        if(tblCategoria.getRowCount()>0)
         {
-            int numeroLinha = tblProdutos.getSelectedRow();
-            int id = Integer.parseInt(tblProdutos.getModel().getValueAt(numeroLinha, 0).toString());         
-            objProduto = ProdutoDAO.retornarId(id);
-            
-            
-            ProdutoForm telaCadastro = new ProdutoForm(objProduto);
+            int numeroLinha = tblCategoria.getSelectedRow();
+            int id = Integer.parseInt(tblCategoria.getModel().getValueAt(numeroLinha, 0).toString());
+            categoria = CategoriaDAO.retornarId(id);
+
+            CategoriaForm telaCadastro = new CategoriaForm(categoria);
             desktopPane.add(telaCadastro);
             telaCadastro.setVisible(true);
         } else{
-            JOptionPane.showMessageDialog(this, "Selecione um produto da tabela!");
+            JOptionPane.showMessageDialog(this, "Selecione uma categoria da tabela!");
         }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try {
-            int numeroLinha = tblProdutos.getSelectedRow();
-            
-            int id = Integer.parseInt(tblProdutos.getModel().getValueAt(numeroLinha, 0).toString());
-            Produto c = new Produto();
+            int numeroLinha = tblCategoria.getSelectedRow();
+
+            int id = Integer.parseInt(tblCategoria.getModel().getValueAt(numeroLinha, 0).toString());
+            Categoria c = new Categoria();
             c.setId(id);
-            ProdutoDAO.excluir(c);
-            
+            CategoriaDAO.excluir(c);
+
             CarregarJTable();
-        
+
         } catch(Exception ex) {
-            JOptionPane.showMessageDialog(this, "Selecione um produto da tabela!");
+            JOptionPane.showMessageDialog(this, "Selecione uma categoria da tabela!");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
-   
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RelatorioVendasForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RelatorioVendasForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RelatorioVendasForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RelatorioVendasForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ConsultarProduto().setVisible(true);
-            }
-        });
-    }
-    
-    public void CarregarJTable() {
-        String Nome = txtNomeProduto.getText();
-        ArrayList<Produto> produtos = ProdutoDAO.consultarProdutos(Nome);
-
-        DefaultTableModel tmProdutos = new DefaultTableModel();
-        tmProdutos.addColumn("id");
-        tmProdutos.addColumn("nome");
-        tmProdutos.addColumn("unidade");
-        tmProdutos.addColumn("preco");
-        tmProdutos.addColumn("validade");
-        tmProdutos.addColumn("categoria");
-        tmProdutos.addColumn("estoque");
-
-        tblProdutos.setModel(tmProdutos);
-        tblProdutos.removeColumn(tblProdutos.getColumnModel().getColumn(0));
-
-        tmProdutos.setRowCount(0);
-        
-        NumberFormat formatter = NumberFormat.getCurrencyInstance();
-        
-        for (Produto p : produtos) {
-            
-            tmProdutos.addRow(new Object[]{p.getId(), p.getNome(), p.getUnidade(), formatter.format(p.getPreco()), DataHelper.dateToTexto(p.getValidade()), p.getCategoria(), p.getEstoque()});
-        }
-        
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
@@ -278,7 +225,7 @@ public class ConsultarProduto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblProdutos;
-    private javax.swing.JTextField txtNomeProduto;
+    private javax.swing.JTable tblCategoria;
+    private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }
