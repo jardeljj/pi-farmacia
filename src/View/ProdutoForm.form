@@ -49,7 +49,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="panelProduto" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="34" max="32767" attributes="0"/>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnAdicionar" max="32767" attributes="0"/>
                   <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
@@ -102,7 +102,7 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtCategoria" max="32767" attributes="0"/>
+                                      <Component id="txtPreco" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="lblPreco" min="-2" max="-2" attributes="0"/>
@@ -110,7 +110,7 @@
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="txtPreco" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jCategorias" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="lblNomeProduto" min="-2" pref="81" max="-2" attributes="0"/>
@@ -153,8 +153,8 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtValidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCategorias" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -184,11 +184,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Nome "/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtCategoria">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCategoriaActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtUnidade">
           <Events>
@@ -228,6 +223,16 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtQtnestoque">
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jCategorias">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

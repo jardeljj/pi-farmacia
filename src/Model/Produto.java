@@ -19,7 +19,8 @@ public class Produto {
     private String unidade;
     private double preco ;
     private Date validade;
-    private String categoria;
+    private int categoria;
+    private String nomeCategoria;
     private int estoque;   
     
     public Produto(){
@@ -71,11 +72,11 @@ public class Produto {
     }
     
     
-     public String getCategoria() {
+     public int getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(int categoria) {
         this.categoria = categoria;
     }
     
@@ -94,4 +95,13 @@ public class Produto {
     public void setEstoque(int estoque) {
         this.estoque = estoque;
     }
+
+    public String getNomeCategoria() {
+        return nomeCategoria;
+    }
+
+    public void setNomeCategoria(String nomeCategoria) {
+        this.nomeCategoria = nomeCategoria;
+    }
+    
 }

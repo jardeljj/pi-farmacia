@@ -5,6 +5,7 @@ import View.CarrinhoVendaForm;
 import View.ConsultarProduto;
 import View.RelatorioVendasForm;
 import View.PainelCliente;
+import View.CategoriaConsultarForm;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -40,6 +41,7 @@ public class PrincipalForm extends javax.swing.JFrame {
         btnRelatorio = new javax.swing.JButton();
         btnRelatorio1 = new javax.swing.JButton();
         btnCliente = new javax.swing.JButton();
+        btnCategoria = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCliente = new javax.swing.JMenu();
 
@@ -92,6 +94,13 @@ public class PrincipalForm extends javax.swing.JFrame {
             }
         });
 
+        btnCategoria.setText("Categoria");
+        btnCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCategoriaActionPerformed(evt);
+            }
+        });
+
         menuCliente.setText("Novo");
         menuCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,9 +119,11 @@ public class PrincipalForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(btnProduto)
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCategoria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCliente)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addComponent(btnVenda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRelatorio1)
@@ -129,7 +140,8 @@ public class PrincipalForm extends javax.swing.JFrame {
                     .addComponent(btnCliente)
                     .addComponent(btnVenda)
                     .addComponent(btnRelatorio1)
-                    .addComponent(btnRelatorio))
+                    .addComponent(btnRelatorio)
+                    .addComponent(btnCategoria))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDesktopPane1)
                 .addContainerGap())
@@ -174,6 +186,14 @@ public class PrincipalForm extends javax.swing.JFrame {
         pedidos.setVisible(true);
     }//GEN-LAST:event_btnRelatorio1ActionPerformed
 
+    private void btnCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoriaActionPerformed
+        // TODO add your handling code here:
+        CategoriaConsultarForm categoria = new CategoriaConsultarForm();        
+        jDesktopPane1.add(categoria);
+        categoria.desktopPane = jDesktopPane1;
+        categoria.setVisible(true);
+    }//GEN-LAST:event_btnCategoriaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -210,6 +230,7 @@ public class PrincipalForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCategoria;
     private javax.swing.JButton btnCliente;
     private javax.swing.JButton btnProduto;
     private javax.swing.JButton btnRelatorio;
