@@ -5,9 +5,11 @@
  */
 package View;
 
+import Common.DataHelper;
 import DAO.ProdutoDAO;
 import Model.Produto;
 import View.ProdutoForm;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JDesktopPane;
@@ -259,8 +261,11 @@ public class ConsultarProduto extends javax.swing.JInternalFrame {
 
         tmProdutos.setRowCount(0);
         
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        
         for (Produto p : produtos) {
-            tmProdutos.addRow(new Object[]{p.getId(), p.getNome(), p.getUnidade(), p.getPreco(), p.getValidade(), p.getCategoria(), p.getEstoque()});
+            
+            tmProdutos.addRow(new Object[]{p.getId(), p.getNome(), p.getUnidade(), formatter.format(p.getPreco()), DataHelper.dateToTexto(p.getValidade()), p.getCategoria(), p.getEstoque()});
         }
         
     }

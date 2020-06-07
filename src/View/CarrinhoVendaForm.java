@@ -6,9 +6,11 @@
 package View;
 
 import Common.DataHelper;
+import DAO.EstoqueDAO;
 import DAO.PedidoDAO;
 import DAO.ProdutoDAO;
 import Model.CarrinhoCompra;
+import Model.Cliente;
 import Model.Produto;
 import Model.ProdutoCarrinho;
 import Validation.campoNumero;
@@ -26,6 +28,7 @@ public class CarrinhoVendaForm extends javax.swing.JInternalFrame {
 
     Produto produtoSelecionado = null;
     CarrinhoCompra carrinhoCompra;
+    Cliente cliente = null;
     /**
      * Creates new form CarrinhoVendaForm
      */
@@ -45,6 +48,9 @@ public class CarrinhoVendaForm extends javax.swing.JInternalFrame {
         txtNomeProduto.setText("");
         jLabel5.setText("");
         txtCPFCliente.setText("");
+        
+        produtoSelecionado = null;
+        cliente = null;
     }
     
     private double getValor() {
@@ -398,9 +404,10 @@ public class CarrinhoVendaForm extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCpf)
-                    .addComponent(txtCPFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btBuscarCPF)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtCPFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btBuscarCPF)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -424,7 +431,7 @@ public class CarrinhoVendaForm extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtCPFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btBuscarCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(btBuscarCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -489,7 +496,11 @@ public class CarrinhoVendaForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCPFClienteActionPerformed
 
     private void btBuscarCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarCPFActionPerformed
-        // TODO add your handling code here:
+        String cpf = this.txtCPFCliente.getText();
+        cliente = PedidoDAO.retornarCliente(cpf);
+        if (cliente != null) {
+            jLabel5.setText(cliente.getNome());
+        }
     }//GEN-LAST:event_btBuscarCPFActionPerformed
 
     private void btBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarProdutoActionPerformed
@@ -520,6 +531,12 @@ public class CarrinhoVendaForm extends javax.swing.JInternalFrame {
         if (total > 0) {
             int quantidade = Integer.parseInt(txtQuantidade.getText());
             ProdutoCarrinho produto = new ProdutoCarrinho(produtoSelecionado);
+            
+            if (!EstoqueDAO.temEstoque(produto, carrinhoCompra)){
+                JOptionPane.showMessageDialog(null, "Produto sem estoque", " AVISO ", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            
             produto.setQuantidade(quantidade);
             produto.setTotal(quantidade * produtoSelecionado.getPreco());
 
@@ -552,16 +569,21 @@ public class CarrinhoVendaForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btExcluirItemActionPerformed
 
     private void btFecharVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFecharVendaActionPerformed
-        if (carrinhoCompra.getProdutos().size() > 0) {
-            boolean salvou = PedidoDAO.salvar(carrinhoCompra);
-            if (salvou) {
-                InitValues();
-                JOptionPane.showMessageDialog(this, "Pedido salvo");
+        if (cliente != null) {
+            if (carrinhoCompra.getProdutos().size() > 0) {
+                carrinhoCompra.setCliente(cliente);
+                boolean salvou = PedidoDAO.salvar(carrinhoCompra);
+                if (salvou) {
+                    InitValues();
+                    JOptionPane.showMessageDialog(this, "Pedido salvo");
+                }else {
+                    JOptionPane.showMessageDialog(null, "Ocorreu um problema ao salvar o pedido", " AVISO ", JOptionPane.WARNING_MESSAGE);
+                }
             }else {
-                JOptionPane.showMessageDialog(null, "Ocorreu um problema ao salvar o pedido", " AVISO ", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Escolha um produto", " AVISO ", JOptionPane.WARNING_MESSAGE);
             }
-        }else {
-            JOptionPane.showMessageDialog(null, "Escolha um produto", " AVISO ", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um cliente", " AVISO ", JOptionPane.WARNING_MESSAGE);
         }
         
     }//GEN-LAST:event_btFecharVendaActionPerformed

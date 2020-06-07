@@ -33,7 +33,7 @@ public class PedidoDAO {
             instrucaoSQL = conexao.prepareStatement("INSERT INTO pedido (cliente, total, inclusao) VALUES (?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
 
-            instrucaoSQL.setInt(1, 1);
+            instrucaoSQL.setInt(1, c.getCliente().getId());
             instrucaoSQL.setDouble(2, c.getTotal());
             instrucaoSQL.setDate(3, new java.sql.Date(c.getDataCriacao().getTime()));
 
@@ -45,6 +45,7 @@ public class PedidoDAO {
                 ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys(); //Recupero o ID do cliente
                 if (generatedKeys.next()) {
                     id = generatedKeys.getInt(1);
+                    EstoqueDAO.removeQtdEstoque(c);
                 } else {
                     throw new SQLException("Falha ao obter o ID do pedido.");
                 }
@@ -110,12 +111,12 @@ public class PedidoDAO {
 
         try {
             conexao = GerenciadorConexao.abrirConexao();
-            String query = "SELECT * FROM PEDIDO WHERE 1 = 1 AND inclusao BETWEEN ? AND ?" ;            
+            String query = "SELECT ped.*, cli.nome FROM PEDIDO ped left join cliente cli on ped.cliente = cli.id WHERE 1 = 1 AND ped.inclusao BETWEEN ? AND ?" ;            
             if (filtroCPF) {
                 query += " AND cli.cpf like ?";
             }
             
-            query += " order by inclusao desc, id desc";
+            query += " order by ped.inclusao desc, ped.id desc";
 
             instrucaoSQL = conexao.prepareStatement(query);
             
@@ -134,6 +135,7 @@ public class PedidoDAO {
                 p.setId(rs.getInt("id"));
                 p.setDataCriacao(rs.getDate("inclusao"));
                 Cliente cliente = new Cliente();
+                cliente.setNome(rs.getString("nome"));
                 p.setCliente(cliente);
                 listaPedidos.add(p);
             }
@@ -190,5 +192,36 @@ public class PedidoDAO {
         }
 
         return listaProdutos;
+    }
+
+    public static Cliente retornarCliente(String cpf) {
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        Cliente cliente = new Cliente();
+
+        try {
+            conexao = GerenciadorConexao.abrirConexao();
+
+            instrucaoSQL = conexao.prepareStatement("SELECT * FROM cliente WHERE cpf = ?");
+            instrucaoSQL.setString(1, cpf);
+            rs = instrucaoSQL.executeQuery();
+
+            //Percorrer o resultSet
+            while (rs.next()) {
+                cliente.setId(rs.getInt("id"));
+                cliente.setNome(rs.getString("nome"));
+                cliente.setCpf(rs.getString("cpf"));
+                break;
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            cliente = null;
+        } finally {
+            GerenciadorConexao.fecharConexao(conexao, instrucaoSQL);
+        }
+
+        return cliente;
     }
 }

@@ -43,3 +43,12 @@ CREATE TABLE pedido_item (
 );
 
 select * from pedido_item;
+
+
+CREATE TABLE cliente (
+  id smallint not null auto_increment,
+  nome char(30),
+  primary key (id)
+);
+
+select * from cliente;
