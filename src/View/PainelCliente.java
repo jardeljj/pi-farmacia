@@ -34,7 +34,6 @@ public class PainelCliente extends javax.swing.JInternalFrame {
        jBExcluir1.setEnabled(true);
        jBAlterar.setEnabled(true);
        txtCPFCliente.setEnabled(true);
-       txtCPF.setEnabled(true);
        jFormattedTextIdade.setEnabled(true);
        jTextEndereco.setEnabled(true);
        jTextBairro.setEnabled(true);
@@ -44,7 +43,56 @@ public class PainelCliente extends javax.swing.JInternalFrame {
        jComboBoxEstadoCivil.setEnabled(true);
        jTextTelefone.setEnabled(true);
        jTextEmail.setEnabled(true);
+       
+       CarregarTabela();
         
+    }
+  
+    public void CarregarTabela() {
+        String cpf = jTextField1.getText().trim();
+        ArrayList<Cliente> listaClientes = ClienteDAO.consultarCliente(cpf);
+            
+           
+        DefaultTableModel dadosCliente = new DefaultTableModel();
+
+        dadosCliente.addColumn("id");
+        dadosCliente.addColumn("Cpf");
+        dadosCliente.addColumn("Nome");
+        dadosCliente.addColumn("Endereco");
+        dadosCliente.addColumn("Número");
+        dadosCliente.addColumn("Bairro");
+        dadosCliente.addColumn("Cidade");
+        dadosCliente.addColumn("Idade");
+        dadosCliente.addColumn("Telefone");
+        dadosCliente.addColumn("Sexo");
+        dadosCliente.addColumn("Email");
+        dadosCliente.addColumn("Estado Civil");
+        tbCliente.setModel(dadosCliente);
+
+        tbCliente.removeColumn(tbCliente.getColumnModel().getColumn(0));
+
+
+
+        dadosCliente.setRowCount(0);
+
+        for( Cliente cli : listaClientes){
+
+            dadosCliente.addRow(
+                    new Object[]{
+                        cli.getId(),
+                        cli.getCpf(),
+                        cli.getNome(),
+                        cli.getEndereco(),
+                        cli.getNumero(),
+                        cli.getBairro(),
+                        cli.getCidade(),
+                        cli.getIdade(),
+                        cli.getTelefone(),
+                        cli.getSexo(),
+                        cli.getEmail(),
+                        cli.getEstadoCivil()
+                        });
+        } 
     }
 
     @SuppressWarnings("unchecked")
@@ -88,8 +136,8 @@ public class PainelCliente extends javax.swing.JInternalFrame {
         jTextEmail = new javax.swing.JTextField();
         lblEstadoCivil = new javax.swing.JLabel();
         jComboBoxEstadoCivil = new javax.swing.JComboBox<>();
-        txtCPF = new javax.swing.JFormattedTextField();
         adicionarNovo = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -256,17 +304,6 @@ public class PainelCliente extends javax.swing.JInternalFrame {
 
         jComboBoxEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhum", "Solteiro(a)", "Viuvo(a)", "Casado(a)", "Divorciado(a)" }));
 
-        try {
-            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCPFActionPerformed(evt);
-            }
-        });
-
         adicionarNovo.setText("Limpar Campos");
         adicionarNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -345,8 +382,8 @@ public class PainelCliente extends javax.swing.JInternalFrame {
                 .addContainerGap(272, Short.MAX_VALUE)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
                 .addComponent(jBConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(368, 368, 368))
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -403,7 +440,7 @@ public class PainelCliente extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBConsultar)
                     .addComponent(jLabel13)
-                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
                 .addContainerGap())
@@ -536,6 +573,7 @@ public class PainelCliente extends javax.swing.JInternalFrame {
              
              try {
                 ClienteDAO.salvar(clienteDados);
+                CarregarTabela();
                 JOptionPane.showMessageDialog(this,"Cliente cadastrado com sucesso!","Inserido com sucesso!",JOptionPane.INFORMATION_MESSAGE);
                 
             
@@ -636,6 +674,7 @@ public class PainelCliente extends javax.swing.JInternalFrame {
              
                  try {
                  ClienteDAO.atualizar(clienteDados);
+                 CarregarTabela();
                 JOptionPane.showMessageDialog(this,"Cliente alterado com sucesso!","Tudo Certo!",JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this,"Falha ao gravar, contate o administrador"+ e.getMessage(), 
@@ -746,7 +785,7 @@ public class PainelCliente extends javax.swing.JInternalFrame {
             
              
              if(ClienteDAO.excluir(clienteDados.getId())){
-                 
+                 CarregarTabela();
                   JOptionPane.showMessageDialog(this, "Cliente excluído com sucesso!");
              } else {
                  JOptionPane.showMessageDialog(this, "Falha o excluir!");
@@ -852,56 +891,8 @@ public class PainelCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextEmailActionPerformed
 
     private void jBConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarActionPerformed
-            
-              
-            ArrayList<Cliente> listaClientes = ClienteDAO.consultarCliente(txtCPF.getText());
-            
-           
-            DefaultTableModel dadosCliente = new DefaultTableModel();
-            
-            dadosCliente.addColumn("id");
-            dadosCliente.addColumn("Cpf");
-            dadosCliente.addColumn("Nome");
-            dadosCliente.addColumn("Endereco");
-            dadosCliente.addColumn("Número");
-            dadosCliente.addColumn("Bairro");
-            dadosCliente.addColumn("Cidade");
-            dadosCliente.addColumn("Idade");
-            dadosCliente.addColumn("Telefone");
-            dadosCliente.addColumn("Sexo");
-            dadosCliente.addColumn("Email");
-            dadosCliente.addColumn("Estado Civil");
-            tbCliente.setModel(dadosCliente);
-           
-            tbCliente.removeColumn(tbCliente.getColumnModel().getColumn(0));
-            
-            
-            
-            dadosCliente.setRowCount(0);
-            
-            for( Cliente cli : listaClientes){
-                
-                dadosCliente.addRow(
-                        new Object[]{
-                            cli.getId(),
-                            cli.getCpf(),
-                            cli.getNome(),
-                            cli.getEndereco(),
-                            cli.getNumero(),
-                            cli.getBairro(),
-                            cli.getCidade(),
-                            cli.getIdade(),
-                            cli.getTelefone(),
-                            cli.getSexo(),
-                            cli.getEmail(),
-                            cli.getEstadoCivil()
-                            });
-            } 
+        CarregarTabela();
     }//GEN-LAST:event_jBConsultarActionPerformed
-
-    private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
-
-    }//GEN-LAST:event_txtCPFActionPerformed
 
     private void adicionarNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarNovoActionPerformed
        
@@ -926,7 +917,6 @@ public class PainelCliente extends javax.swing.JInternalFrame {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String dataFormatada = dateFormat.format(dataAtual);
         this.jFormattedTextIdade.setText("");
-        this.txtCPF.setText("");
     }//GEN-LAST:event_adicionarNovoActionPerformed
 
        public static void main(String args[]) {
@@ -986,13 +976,13 @@ public class PainelCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextCidade;
     private javax.swing.JTextField jTextEmail;
     private javax.swing.JTextField jTextEndereco;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextNome;
     private javax.swing.JTextField jTextNumero;
     private javax.swing.JFormattedTextField jTextTelefone;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEstadoCivil;
     private javax.swing.JTable tbCliente;
-    private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JFormattedTextField txtCPFCliente;
     // End of variables declaration//GEN-END:variables
 

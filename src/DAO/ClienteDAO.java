@@ -30,7 +30,7 @@ public class ClienteDAO {
         try{
             
             conexao = GerenciadorConexao.abrirConexao();
-            insertSQL = conexao.prepareStatement(" INSERT INTO Cliente(cpf,nome,endereco,numero,bairro,cidade,idade,"
+            insertSQL = conexao.prepareStatement(" INSERT INTO cliente (cpf,nome,endereco,numero,bairro,cidade,idade,"
                                                           + "telefone,sexo,email,estadoCivil)" 
                                                           +  " VALUES (?,?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
                   
@@ -40,12 +40,12 @@ public class ClienteDAO {
             insertSQL.setString(4, clienteDados.getNumero());
             insertSQL.setString(5, clienteDados.getBairro());
             insertSQL.setString(6, clienteDados.getCidade());
-            insertSQL.setDate(7, (Date) clienteDados.getIdade());
+            insertSQL.setDate(7, new java.sql.Date(clienteDados.getIdade().getTime()));
             insertSQL.setString(8, clienteDados.getTelefone());
             insertSQL.setString(9, clienteDados.getSexo());
             insertSQL.setString(10, clienteDados.getEmail());
             insertSQL.setString(11, clienteDados.getEstadoCivil());
-                int linhasAfetadas = insertSQL.executeUpdate();
+            int linhasAfetadas = insertSQL.executeUpdate();
           
           if(linhasAfetadas>0)
             {
@@ -71,18 +71,7 @@ public class ClienteDAO {
             System.out.println(ex.getMessage());
             retorno = false;
         } finally{
-            
-            try {
-                if(insertSQL!=null)
-                    
-                    insertSQL.close();
-                
-                      GerenciadorConexao.fecharConexao(conexao,insertSQL);
-          
-                
-               } catch (SQLException ex) {
-                
-             }
+            GerenciadorConexao.fecharConexao(conexao, insertSQL);
         }
      
         return retorno;         
@@ -101,7 +90,7 @@ public class ClienteDAO {
         try {
             
             conexao = GerenciadorConexao.abrirConexao();
-            consultaSQL = conexao.prepareStatement(" SELECT * FROM Cliente WHERE cpf LIKE ?;");
+            consultaSQL = conexao.prepareStatement(" SELECT * FROM cliente WHERE cpf LIKE ?;");
             
             consultaSQL.setString(1, cpf + "%");
             
@@ -157,7 +146,7 @@ public class ClienteDAO {
         try{
             
             conexao = GerenciadorConexao.abrirConexao();
-            updateSQL = conexao.prepareStatement("UPDATE Cliente SET cpf = ?, nome = ?, endereco = ?, numero = ?, bairro = ?, cidade = ?,"
+            updateSQL = conexao.prepareStatement("UPDATE cliente SET cpf = ?, nome = ?, endereco = ?, numero = ?, bairro = ?, cidade = ?,"
                                                                  + " idade = ?, telefone = ?, sexo = ?, email = ?, estadoCivil = ?"
                                                                  + " WHERE id = ? ");
             
@@ -167,17 +156,16 @@ public class ClienteDAO {
             updateSQL.setString(4, clienteDados.getNumero());
             updateSQL.setString(5, clienteDados.getBairro());
             updateSQL.setString(6, clienteDados.getCidade());
-            updateSQL.setDate(7, (Date) clienteDados.getIdade());
+            updateSQL.setDate(7, new java.sql.Date(clienteDados.getIdade().getTime()));
             updateSQL.setString(8, clienteDados.getTelefone());
             updateSQL.setString(9, clienteDados.getSexo());
             updateSQL.setString(10, clienteDados.getEmail());
             updateSQL.setString(11, clienteDados.getEstadoCivil());
             updateSQL.setInt(12, clienteDados.getId());
-            
                                                                     
             int linhasAfetadas = updateSQL.executeUpdate();
             
-              if(linhasAfetadas>0)
+            if(linhasAfetadas>0)
             {
                 retorno = true;
             }
@@ -189,15 +177,7 @@ public class ClienteDAO {
             System.out.println(ex.getMessage());
             retorno = false;
         }finally{
-    
-            try {
-                if(updateSQL!=null)
-                    updateSQL.close();
-                
-                GerenciadorConexao.fecharConexao(conexao,updateSQL);
-                
-              } catch (SQLException ex) {
-             }
+            GerenciadorConexao.fecharConexao(conexao,updateSQL);
         }
         return retorno;
     }
@@ -210,7 +190,7 @@ public class ClienteDAO {
         
         try{
             conexao = GerenciadorConexao.abrirConexao();
-            deleteSQL =  conexao.prepareStatement(" DELETE FROM Cliente WHERE id = ?");
+            deleteSQL =  conexao.prepareStatement(" DELETE FROM cliente WHERE id = ?");
             
             deleteSQL.setInt(1, idCliente);
             
