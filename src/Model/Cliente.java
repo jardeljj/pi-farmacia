@@ -12,16 +12,39 @@ import java.util.Date;
  * @author PC-adim
  */
 public class Cliente {
+    
     private int id;
     private String cpf;
     private String nome;
     private String endereco;
-    private int numero;
+    private String numero;
     private String bairro;
     private String cidade;
     private Date idade;
-    private int telefone;
+    private String telefone;
     private String sexo;
+    private String email;
+    private String estadoCivil;
+    
+
+    public Cliente() {
+    }
+
+    public Cliente(int id, String cpf, String nome, String endereco, String numero, String bairro, String cidade, Date idade, String telefone, String sexo, String email, String estadoCivil) {
+        this.id = id;
+        this.cpf = cpf;
+        this.nome = nome;
+        this.endereco = endereco;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.idade = idade;
+        this.telefone = telefone;
+        this.sexo = sexo;
+        this.email = email;
+        this.estadoCivil = estadoCivil;
+        
+    }
 
     public int getId() {
         return id;
@@ -30,132 +53,97 @@ public class Cliente {
     public void setId(int id) {
         this.id = id;
     }
-    
-    /**
-     * @return the cpf
-     */
+
     public String getCpf() {
         return cpf;
     }
 
-    /**
-     * @param Cpf the cpf to set
-     */
-    public void setCpf(String Cpf) {
-        this.cpf = Cpf;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    /**
-     * @return the Nome
-     */
     public String getNome() {
         return nome;
     }
 
-    /**
-     * @param Nome the Nome to set
-     */
-    public void setNome(String Nome) {
-        this.nome = Nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    /**
-     * @return the Endereco
-     */
     public String getEndereco() {
         return endereco;
     }
 
-    /**
-     * @param Endereco the Endereco to set
-     */
-    public void setEndereco(String Endereco) {
-        this.endereco = Endereco;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
-    /**
-     * @return the Bairro
-     */
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
     public String getBairro() {
         return bairro;
     }
 
-    /**
-     * @param Bairro the Bairro to set
-     */
-    public void setBairro(String Bairro) {
-        this.bairro = Bairro;
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
-    /**
-     * @return the Cidade
-     */
     public String getCidade() {
         return cidade;
     }
 
-    /**
-     * @param Cidade the Cidade to set
-     */
-    public void setCidade(String Cidade) {
-        this.cidade = Cidade;
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
-    /**
-     * @return the Idade
-     */
     public Date getIdade() {
         return idade;
     }
 
-    /**
-     * @param Idade the Idade to set
-     */
-    public void setIdade(Date Idade) {
-        this.idade = Idade;
+    public void setIdade(Date idade) {
+        this.idade = idade;
     }
 
-    /**
-     * @return the Telefone
-     */
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    /**
-     * @param Telefone the Telefone to set
-     */
-    public void setTelefone(int Telefone) {
-        this.telefone = Telefone;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    /**
-     * @return the Sexo
-     */
     public String getSexo() {
         return sexo;
     }
 
-    /**
-     * @param Sexo the Sexo to set
-     */
-    public void setSexo(String Sexo) {
-        this.sexo = Sexo;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
-    /**
-     * @return the numero
-     */
-    public int getNumero() {
-        return numero;
+    public String getEmail() {
+        return email;
     }
 
-    /**
-     * @param numero the numero to set
-     */
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    public String getEstadoCivil() {
+        return estadoCivil;
+    }
+
+    public void setEstadoCivil(String estadoCivil) {
+        this.estadoCivil = estadoCivil;
+    }
+
+
+    
 
    
 }
