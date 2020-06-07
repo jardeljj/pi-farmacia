@@ -2,7 +2,7 @@ package View;
 
 
 import View.CarrinhoVendaForm;
-import View.ProdutoForm;
+import View.ConsultarProduto;
 import View.RelatorioVendasForm;
 import View.PainelCliente;
 
@@ -144,8 +144,9 @@ public class PrincipalForm extends javax.swing.JFrame {
 
     private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
         // TODO add your handling code here:
-        ProdutoForm produto = new ProdutoForm();        
+        ConsultarProduto produto = new ConsultarProduto();        
         jDesktopPane1.add(produto);
+        produto.desktopPane = jDesktopPane1;
         produto.setVisible(true);
     }//GEN-LAST:event_btnProdutoActionPerformed
 

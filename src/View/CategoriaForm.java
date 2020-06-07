@@ -33,7 +33,7 @@ public class CategoriaForm extends javax.swing.JInternalFrame {
         btnAdicionarCat = new javax.swing.JButton();
         btnCancelarCat = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         panelCategoria.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Categoria"));
 
@@ -61,6 +61,11 @@ public class CategoriaForm extends javax.swing.JInternalFrame {
         );
 
         btnAdicionarCat.setText("Adicionar");
+        btnAdicionarCat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarCatActionPerformed(evt);
+            }
+        });
 
         btnCancelarCat.setText("Cancelar");
 
@@ -94,6 +99,10 @@ public class CategoriaForm extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAdicionarCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarCatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdicionarCatActionPerformed
 
     /**
      * @param args the command line arguments
