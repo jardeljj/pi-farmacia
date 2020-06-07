@@ -116,6 +116,41 @@ public class ProdutoDAO {
         }
         return retorno;
     }
+    
+    public static Produto retornarId(int id) {
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        Produto produto = new Produto();
+
+        try {
+            conexao = GerenciadorConexao.abrirConexao();
+
+            instrucaoSQL = conexao.prepareStatement("SELECT * FROM produto WHERE id = ?");
+            instrucaoSQL.setInt(1, id);
+            rs = instrucaoSQL.executeQuery();
+
+            //Percorrer o resultSet
+            while (rs.next()) {
+                produto.setId(rs.getInt("id"));
+                produto.setNome(rs.getString("nome"));
+                produto.setUnidade(rs.getString("unidade"));
+                produto.setPreco(rs.getDouble("preco"));
+                produto.setValidade(rs.getDate("validade"));
+                produto.setCategoria(rs.getString("categoria"));
+                produto.setEstoque(rs.getInt("estoque"));
+                break;
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            produto = null;
+        } finally {
+            GerenciadorConexao.fecharConexao(conexao, instrucaoSQL);
+        }
+
+        return produto;
+    }
 
     public static ArrayList<Produto> consultarProdutos(String nome) {
         ResultSet rs = null;

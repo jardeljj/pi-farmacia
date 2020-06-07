@@ -5,10 +5,14 @@
  */
 package View;
 
+import Common.DataHelper;
 import DAO.ProdutoDAO;
 import Model.Produto;
+import View.ProdutoForm;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class ConsultarProduto extends javax.swing.JInternalFrame {
 
     Produto objProduto;
+    JDesktopPane desktopPane;
 
     /**
      * Creates new form ConsultarProduto
@@ -166,17 +171,28 @@ public class ConsultarProduto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        // TODO add your handling code here:
-        
+        ProdutoForm telaCadastro = new ProdutoForm();
+        desktopPane.add(telaCadastro);
+        telaCadastro.setVisible(true);
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        // TODO add your handling code here:
-        
+        if(tblProdutos.getRowCount()>0)
+        {
+            int numeroLinha = tblProdutos.getSelectedRow();
+            int id = Integer.parseInt(tblProdutos.getModel().getValueAt(numeroLinha, 0).toString());         
+            objProduto = ProdutoDAO.retornarId(id);
+            
+            
+            ProdutoForm telaCadastro = new ProdutoForm(objProduto);
+            desktopPane.add(telaCadastro);
+            telaCadastro.setVisible(true);
+        } else{
+            JOptionPane.showMessageDialog(this, "Selecione um computador da tabela!");
+        }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
         try {
             int numeroLinha = tblProdutos.getSelectedRow();
             
@@ -245,8 +261,11 @@ public class ConsultarProduto extends javax.swing.JInternalFrame {
 
         tmProdutos.setRowCount(0);
         
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        
         for (Produto p : produtos) {
-            tmProdutos.addRow(new Object[]{p.getId(), p.getNome(), p.getUnidade(), p.getPreco(), p.getValidade(), p.getCategoria(), p.getEstoque()});
+            
+            tmProdutos.addRow(new Object[]{p.getId(), p.getNome(), p.getUnidade(), formatter.format(p.getPreco()), DataHelper.dateToTexto(p.getValidade()), p.getCategoria(), p.getEstoque()});
         }
         
     }

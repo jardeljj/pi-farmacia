@@ -26,13 +26,16 @@ public class ProdutoForm extends javax.swing.JInternalFrame {
     public ProdutoForm() {
         this.objProduto = new Produto();
         initComponents();
-        // O campo só vai aceitar números!
+        
         txtPreco.setDocument(new campoNumero());
         txtQtnestoque.setDocument(new campoNumero());
     }
 
     public ProdutoForm(Produto objProduto) {
         initComponents();
+        txtPreco.setDocument(new campoNumero());
+        txtQtnestoque.setDocument(new campoNumero());
+        
         this.objProduto = objProduto;
         
         this.txtNomeProduto.setText(objProduto.getNome());

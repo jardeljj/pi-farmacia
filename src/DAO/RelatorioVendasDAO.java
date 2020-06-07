@@ -28,7 +28,7 @@ public class RelatorioVendasDAO {
 
         try {
             conexao = GerenciadorConexao.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("SELECT * FROM vendas WHERE data_venda BETWEEN ('?') AND ('?')");
+            instrucaoSQL = conexao.prepareStatement("SELECT ped.*, cli.nome FROM pedido ped left join cliente cli on ped.cliente = cli.id WHERE ped.inclusao BETWEEN ? AND ? order by ped.inclusao desc, ped.id desc");
             instrucaoSQL.setDate(1, new java.sql.Date(dataInicio.getTime()));
             instrucaoSQL.setDate(2, new java.sql.Date(dataFim.getTime()));
             rs = instrucaoSQL.executeQuery();
@@ -37,10 +37,10 @@ public class RelatorioVendasDAO {
 
                 RelatorioVendas venda = new RelatorioVendas();
 
-                venda.setIdVenda(rs.getInt("id_venda"));
-                venda.setDataVenda(rs.getDate("data_venda"));
-                venda.setNomeCli(rs.getString("nome_cliente"));
-                venda.setPrecoTotal(rs.getDouble("preco_total"));
+                venda.setIdVenda(rs.getInt("id"));
+                venda.setDataVenda(rs.getDate("inclusao"));
+                venda.setNomeCli(rs.getString("nome"));
+                venda.setPrecoTotal(rs.getDouble("total"));
 
                 vendas.add(venda);
             }

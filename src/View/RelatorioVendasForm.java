@@ -9,6 +9,7 @@ import Common.DataHelper;
 import DAO.RelatorioVendasDAO;
 import Model.RelatorioVendas;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -58,12 +59,15 @@ public class RelatorioVendasForm extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVendas = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Relatório de vendas");
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
@@ -136,6 +140,10 @@ public class RelatorioVendasForm extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel4.setText("Total :");
+
+        lblTotal.setText("-");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,7 +156,12 @@ public class RelatorioVendasForm extends javax.swing.JInternalFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -160,7 +173,11 @@ public class RelatorioVendasForm extends javax.swing.JInternalFrame {
                     .addComponent(btnBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                    .addComponent(lblTotal))
+                .addContainerGap())
         );
 
         pack();
@@ -169,7 +186,6 @@ public class RelatorioVendasForm extends javax.swing.JInternalFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
         CarregarJTable();
-
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
@@ -211,7 +227,7 @@ public class RelatorioVendasForm extends javax.swing.JInternalFrame {
     }
 
     public void CarregarJTable() {
-
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
         Date dataIni = DataHelper.textoToDate(txtDataInicio.getText());
         Date dataFim = DataHelper.textoToDate(txtDataFim.getText());
 
@@ -226,12 +242,17 @@ public class RelatorioVendasForm extends javax.swing.JInternalFrame {
         tblVendas.setModel(tmVendas);
         tblVendas.removeColumn(tblVendas.getColumnModel().getColumn(0));
 
+        double total = 0;
         tmVendas.setRowCount(0);
         if (vendas != null) {
             for (RelatorioVendas v : vendas) {
-                tmVendas.addRow(new Object[]{v.getIdVenda(), v.getDataVenda(), v.getNomeCli(), v.getPrecoTotal()});
+                total += v.getPrecoTotal();
+                tmVendas.addRow(new Object[]{v.getIdVenda(), DataHelper.dateToTexto(v.getDataVenda()), v.getNomeCli(), formatter.format(v.getPrecoTotal())});
             }
         }
+        NumberFormat format = NumberFormat.getCurrencyInstance();
+        
+        lblTotal.setText(format.format(total));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -239,8 +260,10 @@ public class RelatorioVendasForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JTable tblVendas;
     private javax.swing.JFormattedTextField txtDataFim;
     private javax.swing.JFormattedTextField txtDataInicio;
