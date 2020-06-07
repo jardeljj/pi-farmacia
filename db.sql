@@ -45,11 +45,26 @@ CREATE TABLE pedido_item (
 
 select * from pedido_item;
 
+CREATE TABLE fornecedor (
+  id smallint not null auto_increment,
+  nome varchar(45),
+  CPF varchar(14),
+  telefone char(20),
+  item varchar(45),
+  valorTotal float,
+  qtd int,
+  dataEntrega date,
+  PRIMARY KEY (id)
+);
+
+select * from fornecedor;
 
 CREATE TABLE cliente (
   id smallint not null auto_increment,
   nome char(30),
+  cpf char(11),
   primary key (id)
 );
 
 select * from cliente;
+
